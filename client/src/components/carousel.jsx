@@ -10,7 +10,7 @@ class Carousel extends React.Component {
 		this.state = {
 			data: [],
 			// currId: null,
-			// currId: Math.ceil(Math.random() * 19),
+			currId: Math.ceil(Math.random() * 19),
 			position: 0,
 			direction: 'next',
 			sliding: false
@@ -29,9 +29,15 @@ class Carousel extends React.Component {
 	}
 
 	getSuggestions() {
-		// let { currId } = this.state;
+		let { currId } = this.state;
+		// let currId  = 5;
+		// let { id } = 5
 		axios
-			.get('/suggestions')
+			.get(`/suggestions/`, {
+				params: {
+					id: currId
+				}
+			})
 			.then(({ data }) => {
 				let shuffled = this.shuffle(data);
 				this.setState({ data: shuffled });
