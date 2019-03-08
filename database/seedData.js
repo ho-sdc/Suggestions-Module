@@ -21,13 +21,20 @@ var fs = require('fs')
 // };
 
 // postData(data);
+// let id = 0;
+// let priceArr = [100, 70, 80, 35, 90, 45, 170]
+// let salePriceArr = [null, true]
+// let tagArr = ['men', 'women']
+// let extraTagArr = ['running', 'essentials', 'golf', 'originals', 'soccer', 'training']
+// let kindArr = ['Performance', 'Essentials', 'Originials']
+// let specialTagArr = ['Exclusive', 'Sale', null]
 let id = 0;
 let priceArr = [100, 70, 80, 35, 90, 45, 170]
-let salePriceArr = [null, true]
+let salePriceArr = [0, true]
 let tagArr = ['men', 'women']
 let extraTagArr = ['running', 'essentials', 'golf', 'originals', 'soccer', 'training']
 let kindArr = ['Performance', 'Essentials', 'Originials']
-let specialTagArr = ['Exclusive', 'Sale', null]
+let specialTagArr = ['Exclusive', 'Sale', ""]
 
 const createData = () => {
 	id++;
@@ -45,32 +52,46 @@ const createData = () => {
 		} else if (price == 45) {
 			salePrice = 23
 		} else if(price === 170) {
-			salePrice = null;
-		}
+			salePrice = 0;
+		} 
+		// else {
+		// 	salePrice = 0;
+		// }
 	}
 	let reviewStars = Math.floor(Math.random() * 6)
 	let reviewsTotal = Math.floor(Math.random() * 4000) + 1
-	let productPicture = faker.image.imageUrl
+	let productPicture = faker.image.imageUrl()
 	let tags = [];
 	tags.push(tagArr[Math.floor(Math.random() * tagArr.length)])
 	let extraTag = extraTagArr[Math.floor(Math.random() * extraTagArr.length)]
 	tags.push(extraTag)
 	let kind = kindArr[Math.floor(Math.random() * kindArr.length)]
 	let specialTag = specialTagArr[Math.floor(Math.random() * specialTagArr.length)]
+	let title = faker.lorem.words()
 
-	let obj = {
-		id : id,
-		title: faker.lorem.words(),
-		price: price,
-		salePrice,
-		reviewStars,
-		reviewsTotal,
-		productPicture,
-		tags,
-		kind,
-		specialTag
+	// let obj = {
+	// 	id : id,
+	// 	title: faker.lorem.words(),
+	// 	price: price,
+	// 	salePrice,
+	// 	reviewStars,
+	// 	reviewsTotal,
+	// 	productPicture,
+	// 	tags,
+	// 	kind,
+	// 	specialTag
+	// }
+	let tagsStr = ''
+	for(let i = 0; i < tags.length; i++) {
+		if(i !== tags.length - 1) {
+			tagsStr += tags[i] + ","
+		} else {
+			tagsStr += tags[i]
+		}
 	}
-	return obj;
+	let dataStr =`${id},${title},${price},${salePrice},${reviewStars},${reviewsTotal},${productPicture},"{${tagsStr}}",${kind},${specialTag}\n`
+	// return obj;
+	return dataStr
 	
 	// Product.create({
 	// 	id: id,
@@ -82,7 +103,7 @@ const createData = () => {
 }
 
 function writeOneMillionTimes() {
-	let file = fs.createWriteStream('./data.txt')
+	let file = fs.createWriteStream('./data.csv')
 	let i = 1e7;
 	// data = createData();
 	write();
@@ -94,10 +115,10 @@ function writeOneMillionTimes() {
 			i--;
 			let data = createData()
       if (i === 0) {
-				file.write(JSON.stringify(data), () => file.write());
+				file.write((data), () => file.write());
 				
       } else {
-				ok = file.write(JSON.stringify(data));
+				ok = file.write((data));
       }
     } while (i > 0 && ok);
     if (i > 0) {

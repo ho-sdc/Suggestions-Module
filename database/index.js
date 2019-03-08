@@ -11,15 +11,15 @@ const productSchema = new mongoose.Schema({
 		type: Number,
 		unique: true
 	},
-	title: String, 
-	price: Number, 
-	salePrice: Number, 
+	title: String,
+	price: Number,
+	salePrice: Number,
 	reviewStars: Number,
 	reviewsTotal: Number,
-	productPicture: String, 
-	tags: Array, 
-	kind: String, 
-	specialTag: String     
+	productPicture: String,
+	tags: Array,
+	kind: String,
+	specialTag: String
 });
 
 const Product = mongoose.model('Product', productSchema);
