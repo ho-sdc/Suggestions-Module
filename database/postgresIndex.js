@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('suggestions', '', '', {
-  host: 'http://52.14.197.39:5432',
+  host: 'localhost',
   dialect: 'postgres',
 
 })
