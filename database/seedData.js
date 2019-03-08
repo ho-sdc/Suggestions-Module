@@ -54,9 +54,9 @@ const createData = () => {
 		} else if(price === 170) {
 			salePrice = 0;
 		} 
-		// else {
-		// 	salePrice = 0;
-		// }
+		else {
+			salePrice = 0;
+		}
 	}
 	let reviewStars = Math.floor(Math.random() * 6)
 	let reviewsTotal = Math.floor(Math.random() * 4000) + 1
