@@ -1,5 +1,6 @@
 const Product = require('../database/index.js');
-const sequelize = require('../database/postgresIndex.js');
+// const sequelize = require('../database/postgresIndex.js');
+const pool = require('../database/postgresIndex.js')
 
 
 module.exports = {
@@ -27,29 +28,48 @@ module.exports = {
 	// 	}
 	// }
 
+	// fetch: (req, res) => {
+	// 	// const {id} = req.query;
+	// 	const id = Math.floor(Math.random() * 1100000) + 8900000
+	// 	if (id) {
+	// 		console.time('test')
+	// 		sequelize.query(`SELECT tags FROM products where id = ${id}`)
+	// 		  .then( product => {
+	// 				// console.log(product[0][0].tags);
+	// 				return product[0][0].tags
+	// 			})
+	// 			.then( productArr => {
+	// 				// console.log(productArr)
+	// 				sequelize.query(`SELECT * FROM products where '${productArr[0]}' = any(tags) or '${productArr[1]}' = any(tags) limit 16`)
+	// 				  .then( result => {
+	// 						// console.log(result[0])
+	// 						console.timeEnd('test');
+	// 						res.status(200).send(result[0])
+	// 					})
+	// 			})
+	// 	}
+	// }
 	fetch: (req, res) => {
 		// const {id} = req.query;
 		const id = Math.floor(Math.random() * 1100000) + 8900000
 		if (id) {
 			console.time('test')
-			sequelize.query(`SELECT tags FROM products where id = ${id}`)
+			pool.query(`SELECT tags FROM products where id = ${id}`)
 			  .then( product => {
-					// console.log(product[0][0].tags);
-					return product[0][0].tags
+					// console.log(product.rows[0].tags);
+					// return product[0][0].tags
+					return product.rows[0].tags
 				})
 				.then( productArr => {
 					// console.log(productArr)
-					sequelize.query(`SELECT * FROM products where '${productArr[0]}' = any(tags) or '${productArr[1]}' = any(tags) limit 16`)
+					pool.query(`SELECT * FROM products where '${productArr[0]}' = any(tags) or '${productArr[1]}' = any(tags) limit 16`)
 					  .then( result => {
 							// console.log(result[0])
+							// console.log(result.rows)
 							console.timeEnd('test');
-							res.status(200).send(result[0])
+							res.status(200).send(result.rows)
 						})
 				})
 		}
-	},
-	post: (req, res) => {
-		const { title, price, salePrice, reviewStars, reviewsTotal, productPicture, tags, kind, sepcialTag } = req.body;
-
 	}
 };
