@@ -16,6 +16,6 @@ app.use(cors());
 
 app.get('/suggestions', controllers.fetch);
 
-app.listen(port, () => {
+app.listen(port, () => { 
 	console.log(`server running at: http://localhost:${port}`);
 });

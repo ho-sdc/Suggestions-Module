@@ -31,7 +31,7 @@ module.exports = {
 		// const {id} = req.query;
 		const id = Math.floor(Math.random() * 1100000) + 8900000
 		if (id) {
-			// console.time('test')
+			console.time('test')
 			sequelize.query(`SELECT tags FROM products where id = ${id}`)
 			  .then( product => {
 					// console.log(product[0][0].tags);
@@ -42,7 +42,7 @@ module.exports = {
 					sequelize.query(`SELECT * FROM products where '${productArr[0]}' = any(tags) or '${productArr[1]}' = any(tags) limit 16`)
 					  .then( result => {
 							// console.log(result[0])
-							// console.timeEnd('test');
+							console.timeEnd('test');
 							res.status(200).send(result[0])
 						})
 				})

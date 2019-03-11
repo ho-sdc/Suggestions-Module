@@ -35,7 +35,7 @@ class Carousel extends React.Component {
 		// let { id } = 5
 		console.log(currId);
 		axios
-			.get(`/suggestions/`, {
+			.get(`/suggestions`, {
 				params: {
 					id: currId
 				}

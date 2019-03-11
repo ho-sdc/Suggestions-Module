@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/suggestions', { useNewUrlParser: true });
+// mongoose.connect('mongodb://127.0.0.1/suggestions', { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 var db = mongoose.connection;
-db.on('error', (err) => console.log('connection error: ', err));
-db.once('open', () => console.log('mongo is connected'));
+// db.on('error', (err) => console.log('connection error: ', err));
+// db.once('open', () => console.log('mongo is connected'));
 
 const productSchema = new mongoose.Schema({
 	id: { 
