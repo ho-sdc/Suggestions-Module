@@ -14,7 +14,7 @@ const pool = new Pool({
 
 
 const sequelize = new Sequelize('suggestions', 'postgres', 'password', {
-  host: '18.220.169.235',
+  host: 'localhost',
   // port:5432,
   dialect: 'postgres',
 
