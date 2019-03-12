@@ -15,8 +15,8 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(cors());
 
 app.get('/suggestions', controllers.fetch);
-app.get('/loaderio-94f500bb20d247487a3c1bed93b92952.txt', (req, res) => {
-	res.status(200).send(express.static(path.join(__dirname, './loaderio-94f500bb20d247487a3c1bed93b92952.txt')))
+app.get('/loaderio-b9bad5283283f76e0839330c46d54e57.txt', (req, res) => {
+	res.status(200).send(express.static(path.join(__dirname, './loaderio-b9bad5283283f76e0839330c46d54e57.txt')))
 })
 
 app.listen(port, () => { 
