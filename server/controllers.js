@@ -1,6 +1,6 @@
 const Product = require('../database/index.js');
 // const sequelize = require('../database/postgresIndex.js');
-const pool = require('../database/postgresIndex.js')
+const {pool , sequelize}= require('../database/postgresIndex.js')
 
 
 module.exports = {

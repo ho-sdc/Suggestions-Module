@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const { Pool } = require('pg')
 
 const pool = new Pool({
-  host: '52.14.197.39',
+  host: '18.220.169.235',
   user: 'postgres',
   password: 'password',
   database: 'suggestions'
@@ -13,13 +13,13 @@ const pool = new Pool({
 // })
 
 
-// const sequelize = new Sequelize('suggestions', 'postgres', 'password', {
-//   host: '52.14.197.39',
-//   // port:5432,
-//   dialect: 'postgres',
+const sequelize = new Sequelize('suggestions', 'postgres', 'password', {
+  host: '18.220.169.235',
+  // port:5432,
+  dialect: 'postgres',
 
-//   operatorsAliases: false
-// })
+  operatorsAliases: false
+})
 
 // sequelize
 //   .authenticate()
@@ -28,4 +28,4 @@ const pool = new Pool({
 
 
 
-module.exports = pool;
+module.exports = {pool , sequelize};
