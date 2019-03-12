@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('./postgresIndex.js');
+const {sequelize }= require('./postgresIndex.js');
 
 const Product = sequelize.define(
     'product', 
