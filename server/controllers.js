@@ -53,7 +53,7 @@ module.exports = {
 		// const {id} = req.query;
 		const id = Math.floor(Math.random() * 1100000) + 8900000
 		if (id) {
-			console.time('test')
+			// console.time('test')
 			pool.query(`SELECT tags FROM products where id = ${id}`)
 			  .then( product => {
 					// console.log(product.rows[0].tags);
@@ -66,7 +66,7 @@ module.exports = {
 					  .then( result => {
 							// console.log(result[0])
 							// console.log(result.rows)
-							console.timeEnd('test');
+							// console.timeEnd('test');
 							res.status(200).send(result.rows)
 						})
 				})
